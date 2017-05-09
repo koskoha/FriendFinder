@@ -1,7 +1,7 @@
-const fs = require('fs');
-
+//creating Friends constractor
 function Friends() {
 
+    //declaring array of all friends
     var friends = [{
             "name": "Ahmed",
             "photo": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
@@ -19,31 +19,32 @@ function Friends() {
         }
     ];
 
+    //return all friends data
     this.getFriends = function() {
         return friends;
     };
 
+    //function finding the best match and return it
+    //adding curetn user to the friends array
     this.findMatch = function(current) {
+        //best mutch object for storing the best match friend
         var match = {
             'name': "",
             'photo': "",
             'score': 60
         };
 
-        console.log(current);
-        var myScore = current['scores[]'].reduce((a, b) => parseInt(a) + parseInt(b), 0);
-        console.log('my score', myScore);
+        //current user  total score
+        var currScore = current['scores[]'].reduce((a, b) => parseInt(a) + parseInt(b), 0);
         friends.forEach(function(friend) {
+            //each friend total score
             var friendScore = friend.scores.reduce((a, b) => a + b, 0);
-            console.log('Friend score', friendScore);
-            var totalDifference = myScore - friendScore;
-            console.log('totalDif', totalDifference);
+            var totalDifference = currScore - friendScore;
+            //if total difference is negative it turn it to positive number
             if (totalDifference < 0) {
                 totalDifference *= (-1);
             }
-            console.log('after total dif', totalDifference);
             if (totalDifference < match.score) {
-                console.log('im in', friend.name);
                 match.name = friend.name;
                 match.photo = friend.photo;
                 match.score = totalDifference;
@@ -54,6 +55,8 @@ function Friends() {
     };
 }
 
+//creating friends object for working with it
 var friends = new Friends();
 
+//exporting friends object
 module.exports = friends;
