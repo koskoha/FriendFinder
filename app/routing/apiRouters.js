@@ -6,15 +6,12 @@ var friends = require('../data/friends.js');
 var router = express.Router();
 
 router.get('/friends', (req, res) => {
-    friends.getFriends((data) => {
-        return res.send(data);
-    })
+    return res.send(friends.getFriends());
 });
 
 router.post('/friends', (req, res) => {
     var newFriend = req.body;
-    friends.addFriend("kosty", "dsfadfadf", ["tip"]);
-    return res.send(friends.getFriends());
+    return res.send(friends.findMatch(newFriend));
 });
 
 module.exports = router;
