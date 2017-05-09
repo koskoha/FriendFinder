@@ -35,7 +35,7 @@ function Friends() {
         };
 
         //current user  total score
-        var currScore = current['scores[]'].reduce((a, b) => parseInt(a) + parseInt(b), 0);
+        var currScore = current.scores.reduce((a, b) => parseInt(a) + parseInt(b), 0);
         friends.forEach(function(friend) {
             //each friend total score
             var friendScore = friend.scores.reduce((a, b) => a + b, 0);

@@ -13,6 +13,10 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     //getting user inputs
     var newFriend = req.body;
+    var scores = newFriend['scores[]'];
+    newFriend.scores = scores;
+    delete newFriend['scores[]'];
+    console.log('fixed friend', newFriend);
     //saving to the server and returning best matched friend 
     return res.send(friends.findMatch(newFriend));
 });
